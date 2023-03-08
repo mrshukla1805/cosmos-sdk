@@ -1,0 +1,7 @@
+syntax = "proto3";
+package todo.todo;
+
+option go_package = "todo/x/todo/types";
+
+// Msg defines the Msg service.
+service Msg {}
