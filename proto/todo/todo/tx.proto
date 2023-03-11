@@ -1,7 +1,40 @@
 syntax = "proto3";
+
 package todo.todo;
+
+import "todo/todo/task.proto";
 
 option go_package = "todo/x/todo/types";
 
 // Msg defines the Msg service.
-service Msg {}
+service Msg {
+  rpc CreateTask (MsgCreateTask) returns (MsgCreateTaskResponse);
+  rpc UpdateTask (MsgUpdateTask) returns (MsgUpdateTaskResponse);
+  rpc DeleteTask (MsgDeleteTask) returns (MsgDeleteTaskResponse);
+}
+message MsgCreateTask {
+  string creator = 1;
+  string title   = 2;
+  string body    = 3;
+}
+
+message MsgCreateTaskResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateTask {
+  string creator = 1;
+  uint64 id      = 2;
+  string title   = 3;
+  string body    = 4;
+}
+
+message MsgUpdateTaskResponse {}
+
+message MsgDeleteTask {
+  string creator = 1;
+  uint64 id      = 2;
+}
+
+message MsgDeleteTaskResponse {}
+
